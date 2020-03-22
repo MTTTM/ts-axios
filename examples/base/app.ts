@@ -108,7 +108,7 @@ axios({
     b: 2
   }
 }).then((res) => {
-  console.log(res.data,typeof res.data)
+  console.log(res)
 })
 
 axios({

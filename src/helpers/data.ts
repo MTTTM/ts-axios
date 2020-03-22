@@ -5,3 +5,11 @@ export function transformRequest(data: any): any {
   }
   return data
 }
+export function transformRespones(data: any): any {
+  if (typeof data === 'string') {
+    try {
+      data = JSON.parse(data)
+    } catch (e) {}
+  }
+  return data
+}
