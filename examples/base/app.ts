@@ -1,12 +1,12 @@
 import axios from '../../src/tsaxios'
 
-axios({
-  method: 'get',
-  url: '/base/get',
-  params: {
-    foo: ['bar', 'baz']
-  }
-})
+// axios({
+//   method: 'get',
+//   url: '/base/get',
+//   params: {
+//     foo: ['bar', 'baz']
+//   }
+// })
 
 // axios({
 //   method: 'get',
@@ -61,14 +61,14 @@ axios({
 //   }
 // })
 //
-// axios({
-//   method: 'post',
-//   url: '/base/post',
-//   data: {
-//     a: 1,
-//     b: 2
-//   }
-// })
+axios({
+  method: 'post',
+  url: '/base/post',
+  data: {
+    a: 1,
+    b: 2
+  }
+})
 //
 // axios({
 //   method: 'post',
