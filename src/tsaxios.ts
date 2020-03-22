@@ -1,17 +1,18 @@
-import { AxiosRequestConfig } from './types/index'
+import { AxiosRequestConfig, AxiosPromise } from './types/index'
 import { buildURL } from './helpers/url'
 import { transformRequest } from './helpers/data'
 import { processsHeaders } from './helpers/headers'
 import xhr from './xhr'
-function axios(config: AxiosRequestConfig): void {
+function axios(config: AxiosRequestConfig): AxiosPromise {
   processConfig(config)
-  xhr(config)
+  return xhr(config)
 }
 
 //发起请求前的配置
 function processConfig(config: AxiosRequestConfig): void {
   config.url = transformUrl(config)
-  config.headers = transformHeaders(config) //务必在对data处理之前，transformRequestData JSON.string了
+  //务必在对data处理之前，transformRequestData JSON.string了
+  config.headers = transformHeaders(config)
   config.data = transformRequestData(config)
 }
 //对url进行处理

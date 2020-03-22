@@ -12,12 +12,14 @@ function normalizeHeaderName(headers: any, normalizeName: string): void {
   })
 }
 export function processsHeaders(headers: any, data: any): any {
-  console.log('config', headers)
   normalizeHeaderName(headers, 'Content-Type')
+
   if (isPlainObject(data)) {
+    //如果不存在，默认发送json
     if (headers && !headers['Content-Type']) {
-      headers['Content-Type'] = 'application/json;chatset=utf-8'
+      headers['Content-Type'] = 'application/json;charset=utf-8'
     }
   }
+  console.log('isPlainObject(data)', headers)
   return headers
 }
