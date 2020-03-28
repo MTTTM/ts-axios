@@ -5,6 +5,7 @@ import { extend } from './helpers/util'
 function createInstace(): AxiosInstance {
   const context = new Axios()
   const instance = Axios.prototype.request.bind(context)
+  //把context的属性拓展给instance
   extend(instance, context)
   return instance as AxiosInstance
 }
