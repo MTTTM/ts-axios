@@ -55,5 +55,5 @@ export interface Axios {
 }
 //混合型接口
 export interface AxiosInstance {
-  (config: AxiosRequestConfig): AxiosPromise
+  (url: string, config?: AxiosRequestConfig): AxiosPromise
 }

@@ -16,13 +16,13 @@ import axios from '../../src/tsaxios'
 //   }
 // })
 
-axios.get('/extend/get')
+// axios.get('/extend/get')
 
 // axios.options('/extend/options')
 
 // axios.delete('/extend/delete')
 
-axios.head('/extend/head')
+// axios.head('/extend/head')
 
 // axios.post('/extend/post', { msg: 'post' })
 
@@ -38,12 +38,12 @@ axios.head('/extend/head')
 //   }
 // })
 
-// axios('/extend/post', {
-//   method: 'post',
-//   data: {
-//     msg: 'hello'
-//   }
-// })
+axios('/extend/post', {
+  method: 'post',
+  data: {
+    msg: 'hello'
+  }
+})
 
 // interface ResponseData<T = any> {
 //   code: number
