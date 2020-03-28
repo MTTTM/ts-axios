@@ -1,3 +1,5 @@
+import { request } from 'http'
+
 export type Method =
   | 'get'
   | 'GET'
@@ -32,3 +34,11 @@ export interface AxiosResponse {
   request: any
 }
 export interface AxiosPromise extends Promise<AxiosResponse> {}
+
+export interface AxiosError extends Error {
+  isAxiosError: boolean
+  config: AxiosRequestConfig
+  code?: string | null
+  request?: any
+  Response?: AxiosResponse
+}
