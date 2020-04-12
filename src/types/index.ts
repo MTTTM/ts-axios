@@ -44,6 +44,10 @@ export interface AxiosError extends Error {
 }
 
 export interface Axios {
+  interceptors: {
+    request: AxiosInterceptorHanager<AxiosRequestConfig>
+    response: AxiosInterceptorHanager<AxiosResponse>
+  }
   request<T = any>(config: AxiosRequestConfig): AxiosPromise<T>
   get<T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T>
   delete<T = any>(url: string, config: AxiosRequestConfig): AxiosPromise<T>
@@ -54,14 +58,14 @@ export interface Axios {
   patch<T = any>(url: string, data: any, config: AxiosRequestConfig): AxiosPromise<T>
 }
 //混合型接口
-export interface AxiosInstance {
-  <T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T>
+export interface AxiosInstance extends Axios {
+  <T = any>(config: AxiosRequestConfig): AxiosPromise<T>
   <T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T>
 }
 
 //拦截器
 export interface AxiosInterceptorHanager<T> {
-  use(resolved: ResolvedFn<T>, rejected: RejectedFn): number
+  use(resolved: ResolvedFn<T>, rejected?: RejectedFn): number
   eject(id: number): void
 }
 export interface ResolvedFn<T = any> {
