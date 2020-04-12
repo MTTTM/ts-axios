@@ -35,7 +35,7 @@ export default class Axios {
     } else {
       config = url
     }
-    //初始值
+    //初始值，发起请求的程序，最终生成链条如[请求拦截器，请求拦截器，请求程序，响应拦截器，响应拦截器]
     const chain: PromiseChain<any>[] = [
       {
         resolved: dispatchRequest,
@@ -51,9 +51,11 @@ export default class Axios {
       chain.push(interceptor)
     })
     let promise = Promise.resolve(config)
+    //这里的设计很有意思，不断的把上一个元素得到的resolved和rejected往下传递
     while (chain.length) {
       const { resolved, rejected } = chain.shift()!
-      promise = promise.then(resolved, rejected)
+      //一个个的链条里面的内容,但是【请求程序】不是异步的么？这里为何可以这样写
+      promise = promise.then(resolved, rejected) //接触赋值之后，之前的promise还是在执行的，只要resolved或者rejected响应，就能在下一级then响应
     }
     return promise
     //return dispatchRequest(config)
