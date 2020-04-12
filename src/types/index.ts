@@ -58,3 +58,15 @@ export interface AxiosInstance {
   <T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T>
   <T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T>
 }
+
+//拦截器
+export interface AxiosInterceptorHanager<T> {
+  use(resolved: ResolvedFn<T>, rejected: RejectedFn): number
+  eject(id: number): void
+}
+export interface ResolvedFn<T = any> {
+  (val: T): T | Promise<T>
+}
+export interface RejectedFn {
+  (error: any): any
+}
