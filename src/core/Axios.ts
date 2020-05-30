@@ -8,6 +8,7 @@ import {
   ResolvedFn
 } from '../types'
 import InterceptorManager from './InterceptorManager'
+import mergeConfig from './mergeConfig'
 interface Interceptors {
   request: InterceptorManager<AxiosRequestConfig>
   response: InterceptorManager<AxiosResponse>
@@ -37,6 +38,7 @@ export default class Axios {
     } else {
       config = url
     }
+    config = mergeConfig(this.defaults, config) //合并参数
     //初始值，发起请求的程序，最终生成链条如[请求拦截器，请求拦截器，请求程序，响应拦截器，响应拦截器]
     const chain: PromiseChain<any>[] = [
       {
