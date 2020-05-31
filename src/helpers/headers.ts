@@ -46,7 +46,9 @@ export function flattenHeaders(headers: any, method: Method): any {
   if (!headers) {
     return headers
   }
+  //合并到一个对象中
   headers = deepMerge(headers.common, headers[method], headers)
+  //合并之后删除原来在header里面做的对应配置，因为header不需要多层的配置
   const methodsToDelete = ['delete', 'get', 'head', 'options', 'post', 'put', 'patch', 'common']
   methodsToDelete.forEach(method => {
     delete headers[method]

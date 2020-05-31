@@ -1,5 +1,5 @@
 import axios from '../../src/tsaxios'
-
+console.log("axios",axios)
 // axios({
 //   url: '/extend/post',
 //   method: 'post',

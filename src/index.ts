@@ -6,6 +6,7 @@ import defaults from './default'
 function createInstace(config: AxiosRequestConfig): AxiosInstance {
   const context = new Axios(config)
   const instance = Axios.prototype.request.bind(context)
+  console.log('instance', instance, 'context', context)
   //把context的属性拓展给instance
   extend(instance, context)
   return instance as AxiosInstance
