@@ -1,5 +1,4 @@
 import axios, { AxiosTransformer } from '../../src/tsaxios'
-import { QUOTE_STRING_MODE } from 'highlight.js';
 import { type } from 'os';
 
 // axios.defaults.headers.common["test2"]=123;
@@ -28,7 +27,28 @@ import { type } from 'os';
 //   }
 // })
 
-axios({
+// axios({
+//   transformRequest:[function(data){
+//     return JSON.stringify(data);
+//   },...(axios.defaults.transformRequest as AxiosTransformer[])],
+//   transformResponse:[...(axios.defaults.transformResponse as AxiosTransformer[]),function(data){
+//     if(typeof data =='object'){
+//       data.b="2";
+//     }
+//     return data;
+//   }],
+//   method: 'post',
+//   url: '/base/post',
+//   headers:{
+//      test:"test"
+//   },
+//   data: {
+//     a: 'config',
+//   }
+// }).then((res) => {
+//   console.log(res)
+// })
+const instance=axios.create({
   transformRequest:[function(data){
     return JSON.stringify(data);
   },...(axios.defaults.transformRequest as AxiosTransformer[])],
@@ -38,14 +58,19 @@ axios({
     }
     return data;
   }],
-  method: 'post',
+})
+console.log("instance",instance)
+instance({
   url: '/base/post',
+  method: 'post',
   headers:{
      test:"test"
   },
   data: {
-    a: 'config',
+        a: 'config',
   }
-}).then((res) => {
-  console.log(res)
+}).then(res=>{
+  console.log("res",res.data)
+}).catch(e=>{
+
 })

@@ -38,7 +38,9 @@ export default class Axios {
     } else {
       config = url
     }
+    console.log('config,axios', config)
     config = mergeConfig(this.defaults, config) //合并参数
+    console.log('合并后', config)
     //初始值，发起请求的程序，最终生成链条如[请求拦截器，请求拦截器，请求程序，响应拦截器，响应拦截器]
     const chain: PromiseChain<any>[] = [
       {
