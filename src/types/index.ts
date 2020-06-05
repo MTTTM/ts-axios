@@ -1,4 +1,5 @@
 import { request } from 'http'
+import { transformRequest } from '../helpers/data'
 
 export type Method =
   | 'get'
@@ -23,6 +24,8 @@ export interface AxiosRequestConfig {
   headers?: any
   responseType?: XMLHttpRequestResponseType
   timeout?: number
+  transformRequest?: AxiosTransformer | AxiosTransformer[]
+  transformResponse?: AxiosTransformer | AxiosTransformer[]
   [propName: string]: any
 }
 
@@ -75,4 +78,7 @@ export interface ResolvedFn<T = any> {
 }
 export interface RejectedFn {
   (error: any): any
+}
+export interface AxiosTransformer {
+  (data?: any, header?: any): any
 }
